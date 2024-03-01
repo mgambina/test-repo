@@ -1,0 +1,38 @@
+{
+  "extends": [
+    "config:base",
+    "docker:enableMajor"
+  ],
+  "rangeStrategy": "bump",
+  "ignoreDeps": [
+    "node",
+    "npm",
+    "grunt-connect-proxy",
+    "react",
+    "react-dom"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "prPriority": -1
+    },
+    {
+      "groupName": "Grunt Packages",
+      "matchDepTypes": ["devDependencies"],
+      "matchPackagePrefixes": ["grunt"],
+      "matchPackageNames": ["load-grunt-tasks"]
+    },
+    {
+      "groupName": "Karma Packages",
+      "matchDepTypes": ["devDependencies"],
+      "matchPackagePrefixes": ["karma"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "prPriority": 10,
+      "automerge": true,
+      "automergeStrategy": "squash"
+    }
+  ],
+  "binarySource": "install"
+}
